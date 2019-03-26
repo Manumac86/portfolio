@@ -1,6 +1,6 @@
 import React from 'react';
 import './contact-layout.css';
-import linkedIn from '../../images/linkedIn.png';
+/* import linkedIn from '../../images/linkedIn.png'; */
 
 function ContactLayout() {
     return (

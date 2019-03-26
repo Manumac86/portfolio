@@ -6,7 +6,7 @@ function CardLayout(props) {
     return (
         <div className='Card-Layout'>
             <img src={props.content.image} alt="project"></img>
-            <h3><a href={props.content.link} target="_blank">{props.content.title}</a></h3>
+            <h3><a href={props.content.link} target="_blank" rel="noopener noreferrer">{props.content.title}</a></h3>
             <p>{props.content.description}</p>
             <p>{props.content.technology}</p>
         </div>
