@@ -6,45 +6,79 @@ class Experience extends React.Component {
         super(props);
         this.state = {
             error: null,
-            isLoaded: false,
-            items: []
+            postIsLoaded: false,
+            catIsLoaded: false,
+            posts: [],
+            categories: []
         };
     }
     
     componentDidMount() {
         fetch("http://wp.manumac.com.ar/wp-json/wp/v2/posts")
-            .then(res => res.json())
-            .then(
+        .then(res => res.json())
+        .then(
             (result) => {
                 this.setState({
-                    isLoaded: true,
+                    postIsLoaded: true,
                     posts: result
                 });
             },
-            // Note: it's important to handle errors here
-            // instead of a catch() block so that we don't swallow
-            // exceptions from actual bugs in components.
+        // Note: it's important to handle errors here
+        // instead of a catch() block so that we don't swallow
+        // exceptions from actual bugs in components.
             (error) => {
                 this.setState({
-                    isLoaded: true,
+                    postIsLoaded: true,
                     error
                 });
             }
-        )
+        );
+        fetch("http://wp.manumac.com.ar/wp-json/wp/v2/posts")
+        .then(res => res.json())
+        .then(
+            (data) => {
+                this.setState({
+                    catIsLoaded: true,
+                    categories: data
+                });
+            },
+        // Note: it's important to handle errors here
+        // instead of a catch() block so that we don't swallow
+        // exceptions from actual bugs in components.
+            (error) => {
+                this.setState({
+                    catIsLoaded: true,
+                    error
+                });
+            }
+        );
     }
     render () {
-        const { error, isLoaded, posts } = this.state;
+        const { error, postIsLoaded, catIsLoaded, posts, categories } = this.state;
         if (error) {
             return <div>Error: {error.message}</div>;
-        } else if (!isLoaded) {
+        } else if (!postIsLoaded || !catIsLoaded) {
             return <div>Loading...</div>;
         } else {
             return (
                 <div id="experience">
                     <h2>Experience</h2>
-                    {posts.map(post => ( 
-                        <ExperienceLayout title={post.title.rendered} content={post.content.rendered.slice(4, -5)}></ExperienceLayout>
-                    ))}
+                    {categories.map(category => {
+                            let categoriesObj = {};
+                            categoriesObj.postTitle = category.title.rendered;
+                            categoriesObj.postContent = category.content.rendered;
+                            categoriesObj.postExcerpt = category.excerpt.rendered;
+                            return categoriesObj;
+                        }
+                    )}
+                    {posts.map((post) => {
+                        let postsObj = {}; 
+                            postsObj.postTitle = post.title.rendered;
+                            postsObj.postContent = post.content.rendered;
+                            postsObj.postExcerpt = post.excerpt.rendered;
+                            return postsObj;
+                        }
+                    )}
                     {/* <ExperienceLayout></ExperienceLayout> */}
                 </div>
             );
