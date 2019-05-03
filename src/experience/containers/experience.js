@@ -33,10 +33,11 @@ class Experience extends React.Component {
                 });
             }
         );
-        fetch("http://wp.manumac.com.ar/wp-json/wp/v2/posts")
+        fetch("http://wp.manumac.com.ar/wp-json/wp/v2/categories")
         .then(res => res.json())
         .then(
             (data) => {
+                console.log(data);
                 this.setState({
                     catIsLoaded: true,
                     categories: data
@@ -65,10 +66,8 @@ class Experience extends React.Component {
                     <h2>Experience</h2>
                     {categories.map(category => {
                             let categoriesObj = {};
-                            categoriesObj.postTitle = category.title.rendered;
-                            categoriesObj.postContent = category.content.rendered;
-                            categoriesObj.postExcerpt = category.excerpt.rendered;
-                            return categoriesObj;
+                            categoriesObj.name = category.name;
+                            return <div>{categoriesObj.name}</div>;
                         }
                     )}
                     {posts.map((post) => {
@@ -76,7 +75,7 @@ class Experience extends React.Component {
                             postsObj.postTitle = post.title.rendered;
                             postsObj.postContent = post.content.rendered;
                             postsObj.postExcerpt = post.excerpt.rendered;
-                            return postsObj;
+                            return <div>{postsObj.postTitle}</div>;;
                         }
                     )}
                     {/* <ExperienceLayout></ExperienceLayout> */}
