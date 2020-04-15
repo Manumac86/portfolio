@@ -1,12 +1,8 @@
 import React from 'react';
 import './contact-layout.css';
-<<<<<<< HEAD
-/* import linkedIn from '../../images/linkedIn.png'; */
-=======
 import linkedIn from '../../images/linkedIn.png';
 import twitter from '../../images/twitter.png';
 
->>>>>>> 89bc3a77323316000cb455a2c9ac0b10d343d18b
 
 function ContactLayout() {
     return (
