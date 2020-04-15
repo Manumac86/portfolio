@@ -1,6 +1,12 @@
 import React from 'react';
 import './contact-layout.css';
+<<<<<<< HEAD
 /* import linkedIn from '../../images/linkedIn.png'; */
+=======
+import linkedIn from '../../images/linkedIn.png';
+import twitter from '../../images/twitter.png';
+
+>>>>>>> 89bc3a77323316000cb455a2c9ac0b10d343d18b
 
 function ContactLayout() {
     return (
@@ -11,8 +17,14 @@ function ContactLayout() {
             <div className="Contact-Container row text-center">
                 <div className="Social-Container col-md-6">
                     <h4>Social</h4>
-                    <a href="https://www.linkedin.com/in/emmartinez-profile/">LinkedIn</a>
-                    <a href="https://twitter.com/manumac86">Twitter</a>
+                    <a className="socialIconContainer" href="https://www.linkedin.com/in/emmartinez-profile/">
+                        <img className="socialIconImage" alt="LinkedIn logo" src={ linkedIn }/> 
+                        LinkedIn
+                    </a>
+                    <a className="socialIconContainer" href="https://twitter.com/manumac86">
+                        <img className="socialIconImage" alt="LinkedIn logo" src={ twitter }/>
+                        Twitter
+                    </a>
                 </div>
                 <div className="Social-Container col-md-6">
                     <h4>Direct</h4>
